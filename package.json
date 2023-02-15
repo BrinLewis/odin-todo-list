@@ -1,0 +1,26 @@
+{
+  "name": "odin-todo-list",
+  "version": "1.0.0",
+  "description": "This project is part of the Odin Project JavaScript course. It's purpose is to practice a lot of the things I have recently learned such as utilising the SOLID design principles as well as using webpack, creating modules, classes, factory functions etc.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrinLewis/odin-todo-list.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BrinLewis/odin-todo-list/issues"
+  },
+  "homepage": "https://github.com/BrinLewis/odin-todo-list#readme",
+  "devDependencies": {
+    "css-loader": "^6.7.3",
+    "html-webpack-plugin": "^5.5.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  }
+}
