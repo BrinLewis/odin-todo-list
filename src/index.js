@@ -1,8 +1,6 @@
 import "./styles.css";
-import testImg from "./assets/003-twitter.png";
-
-const container = document.querySelector(".container")
-const testPic = document.createElement("img");
-testPic.src = testImg;
-
-container.appendChild(testPic);
+import "./assets/menu.svg";
+import "./assets/home.svg";
+import "./assets/plus.svg";
+import "./assets/close-blue.svg";
+import "./assets/close-red.svg";
