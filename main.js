@@ -116,17 +116,57 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.css */ \"./src/styles.css\");\n/* harmony import */ var _assets_003_twitter_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/003-twitter.png */ \"./src/assets/003-twitter.png\");\n\n\n\nconst container = document.querySelector(\".container\")\nconst testPic = document.createElement(\"img\");\ntestPic.src = _assets_003_twitter_png__WEBPACK_IMPORTED_MODULE_1__;\n\ncontainer.appendChild(testPic);\n\n\n//# sourceURL=webpack://odin-todo-list/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.css */ \"./src/styles.css\");\n/* harmony import */ var _assets_menu_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/menu.svg */ \"./src/assets/menu.svg\");\n/* harmony import */ var _assets_home_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./assets/home.svg */ \"./src/assets/home.svg\");\n/* harmony import */ var _assets_plus_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./assets/plus.svg */ \"./src/assets/plus.svg\");\n/* harmony import */ var _assets_close_blue_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./assets/close-blue.svg */ \"./src/assets/close-blue.svg\");\n/* harmony import */ var _assets_close_red_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./assets/close-red.svg */ \"./src/assets/close-red.svg\");\n\n\n\n\n\n\n\n//# sourceURL=webpack://odin-todo-list/./src/index.js?");
 
 /***/ }),
 
-/***/ "./src/assets/003-twitter.png":
-/*!************************************!*\
-  !*** ./src/assets/003-twitter.png ***!
-  \************************************/
+/***/ "./src/assets/close-blue.svg":
+/*!***********************************!*\
+  !*** ./src/assets/close-blue.svg ***!
+  \***********************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("module.exports = __webpack_require__.p + \"assets/003-twitter.png\";\n\n//# sourceURL=webpack://odin-todo-list/./src/assets/003-twitter.png?");
+eval("module.exports = __webpack_require__.p + \"assets/close-blue.svg\";\n\n//# sourceURL=webpack://odin-todo-list/./src/assets/close-blue.svg?");
+
+/***/ }),
+
+/***/ "./src/assets/close-red.svg":
+/*!**********************************!*\
+  !*** ./src/assets/close-red.svg ***!
+  \**********************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__.p + \"assets/close-red.svg\";\n\n//# sourceURL=webpack://odin-todo-list/./src/assets/close-red.svg?");
+
+/***/ }),
+
+/***/ "./src/assets/home.svg":
+/*!*****************************!*\
+  !*** ./src/assets/home.svg ***!
+  \*****************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__.p + \"assets/home.svg\";\n\n//# sourceURL=webpack://odin-todo-list/./src/assets/home.svg?");
+
+/***/ }),
+
+/***/ "./src/assets/menu.svg":
+/*!*****************************!*\
+  !*** ./src/assets/menu.svg ***!
+  \*****************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__.p + \"assets/menu.svg\";\n\n//# sourceURL=webpack://odin-todo-list/./src/assets/menu.svg?");
+
+/***/ }),
+
+/***/ "./src/assets/plus.svg":
+/*!*****************************!*\
+  !*** ./src/assets/plus.svg ***!
+  \*****************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__.p + \"assets/plus.svg\";\n\n//# sourceURL=webpack://odin-todo-list/./src/assets/plus.svg?");
 
 /***/ })
 
