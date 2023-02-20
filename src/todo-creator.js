@@ -20,6 +20,7 @@ function renderTodos() {
     // Create elements
     const todoContainer = document.createElement("div");
     todoContainer.classList.add("todo");
+    todoContainer.id = `todo-item-${index + 1}`
 
     const priorityIndicator = document.createElement("div");
     priorityIndicator.classList.add("priority");
@@ -27,7 +28,7 @@ function renderTodos() {
 
     const checkbox = document.createElement("input");
     checkbox.setAttribute("type", "checkbox");
-    checkbox.id = `todo-${index + 1}`;
+    checkbox.id = `checkbox-${index + 1}`;
 
     const checkboxLabel = document.createElement(`label`);
     checkboxLabel.setAttribute("for", `${checkbox.id}`);
@@ -37,11 +38,13 @@ function renderTodos() {
 
     const title = document.createElement("p");
     title.classList.add("todo-title");
+    title.classList.add("info-item");
     title.setAttribute("contenteditable", true);
     title.textContent = item.title;
 
     const description = document.createElement("p");
     description.classList.add("todo-desc");
+    description.classList.add("info-item");
     description.setAttribute("contenteditable", true);
     description.textContent = item.description;
 
