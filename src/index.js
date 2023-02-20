@@ -9,7 +9,7 @@ import { createTodo, renderTodos } from "./todo-creator";
 import {
   expandTodo,
   toggleTodoChecked,
-  changePriorityColor,
+  changePriority,
 } from "./todo-manipulation";
 
 sidebarToggle();
@@ -62,6 +62,7 @@ allDeleteTodoBtns.forEach((btn) => {
 const allPriorityBtns = document.querySelectorAll(".priority");
 allPriorityBtns.forEach((btn) => {
   btn.addEventListener("click", (event) => {
-    changePriorityColor(event.target);
+    const btnClicked = event.target;
+    changePriority(btnClicked);
   });
 });
