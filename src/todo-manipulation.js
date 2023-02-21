@@ -1,6 +1,6 @@
 import { allTodos } from "./todo-creator";
 
-export { expandTodo, toggleTodoChecked, changePriority, };
+export { expandTodo, toggleTodoChecked, changePriority, updateText };
 
 function expandTodo(todo) {
   todo.classList.toggle("expanded");
@@ -49,14 +49,14 @@ function getRelatedObject(element) {
   if (element.classList.contains("todo")) {
     todoContainer = element;
   } else if (element.classList.contains("info-item")) {
-    todoContainer = (element.parentNode).parentNode;
+    todoContainer = element.parentNode.parentNode;
   } else {
     todoContainer = element.parentNode;
   }
 
   const todoId = todoContainer.id;
   const index = todoId.slice(-1) - 1;
-  let object = allTodos[index];
+  const object = allTodos[index];
 
   return object;
 }
@@ -64,6 +64,15 @@ function getRelatedObject(element) {
 function changePriority(priorityBtn) {
   changePriorityColor(priorityBtn);
 
-  let object = getRelatedObject(priorityBtn);
-  object.priority = priorityBtn.style.backgroundColor;
+  const todoObject = getRelatedObject(priorityBtn);
+  todoObject.priority = priorityBtn.style.backgroundColor;
+}
+
+function updateText(infoItem) {
+  const todoObject = getRelatedObject(infoItem);
+  if (infoItem.classList.contains("todo-title")) {
+    todoObject.title = infoItem.textContent;
+  } else {
+    todoObject.description = infoItem.textContent;
+  }
 }

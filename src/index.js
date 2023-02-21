@@ -10,6 +10,7 @@ import {
   expandTodo,
   toggleTodoChecked,
   changePriority,
+  updateText
 } from "./todo-manipulation";
 
 sidebarToggle();
@@ -61,8 +62,15 @@ allDeleteTodoBtns.forEach((btn) => {
 // Priority color - Event Listener
 const allPriorityBtns = document.querySelectorAll(".priority");
 allPriorityBtns.forEach((btn) => {
-  btn.addEventListener("click", (event) => {
-    const btnClicked = event.target;
-    changePriority(btnClicked);
+  btn.addEventListener("click", () => {
+    changePriority(btn);
   });
 });
+
+// Update object info with inputted DOM info - Event Listener
+const allInfoItems = document.querySelectorAll(".info-item");
+allInfoItems.forEach(item => {
+  item.addEventListener("blur", () => {
+    updateText(item);
+  })
+})
