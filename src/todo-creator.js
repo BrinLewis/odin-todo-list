@@ -3,6 +3,7 @@ import {
   toggleTodoChecked,
   changePriority,
   updateText,
+  deleteTodo,
 } from "./todo-manipulation";
 
 export { allTodos, createTodo, renderTodos };
@@ -121,7 +122,7 @@ function todoEventListeners() {
     });
   });
 
-  // Delete btn color change - Event Listener
+  // Delete btn - Event Listeners
   const allDeleteTodoBtns = document.querySelectorAll(".delete-todo");
   allDeleteTodoBtns.forEach((btn) => {
     btn.addEventListener("mouseover", () => {
@@ -131,6 +132,10 @@ function todoEventListeners() {
     btn.addEventListener("mouseout", () => {
       btn.src = "./assets/close-blue.svg";
     });
+
+    btn.addEventListener("click", () => {
+      deleteTodo(btn);
+    })
   });
 
   // Priority color - Event Listener
