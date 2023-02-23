@@ -1,10 +1,22 @@
 const folderNames = [];
 
 // The folder names list will just be an array containing strings of each folder
-// name. The folder names will be rendered as li's in an unordered list, each of
-// which will have an click listener that will take the textContent of the li
-// that was clicked and call renderTodos, using the textContent.toLowerCase as
-// the folderName input.
+// name. 
+//
+//The folder names will be rendered as li's in an unordered list, each of
+// which will have a click listener that will take the textContent of the li
+// that was clicked and call renderTodos, which will take the textContent, and 
+// render only the todo objects which have the key:value pair of
+// folder:*foldername*.
+//
+// Will need an event listener on the plus icon next to Folders on the sidebar.
+// This event listener will call renderFolderForm, which will add a small form 
+// containing a text input and two buttons (add, cancel) underneath the list.
+
+// On submission of this form, it will call removeFolderForm, and addNewFolder, 
+// which will take the value of the text input and add an li with that value as
+// its textContent. addNewFolder will also use folderNames.push(newFolderName)
+// to add it to the array.
 //
 // When you click a folder name, it will call renderTodos, which will now take
 // what folder you want, then render only the todo objects which have the 
