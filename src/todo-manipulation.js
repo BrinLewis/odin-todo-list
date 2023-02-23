@@ -2,8 +2,15 @@ import { allTodos } from "./todo-creator";
 
 export { expandTodo, toggleTodoChecked, changePriority, updateText };
 
-function expandTodo(todo) {
-  todo.classList.toggle("expanded");
+function expandTodo(target) {
+  const todoElements = document.querySelectorAll(".todo");
+  todoElements.forEach((el) => {
+    if (el !== target) {
+      el.classList.remove("expanded");
+    }
+  });
+
+  target.classList.toggle("expanded");
 }
 
 function toggleTodoChecked(box) {
