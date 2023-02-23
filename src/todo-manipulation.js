@@ -1,6 +1,6 @@
-import { allTodos } from "./todo-creator";
+import { allTodos, renderTodos } from "./todo-creator";
 
-export { expandTodo, toggleTodoChecked, changePriority, updateText };
+export { expandTodo, toggleTodoChecked, changePriority, updateText, deleteTodo, };
 
 function expandTodo(target) {
   const todoElements = document.querySelectorAll(".todo");
@@ -83,3 +83,12 @@ function updateText(infoItem) {
     todoObject.description = infoItem.textContent;
   }
 }
+
+function deleteTodo(clickedBtn) {
+  console.log(allTodos)
+  const todoObj = getRelatedObject(clickedBtn);
+  const index = allTodos.indexOf(todoObj);
+  allTodos.splice(index, 1);
+  renderTodos();
+  console.log(allTodos);
+};
