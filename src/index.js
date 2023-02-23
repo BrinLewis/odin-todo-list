@@ -6,12 +6,7 @@ import "./assets/close-blue.svg";
 import "./assets/close-red.svg";
 import { sidebarToggle } from "./sidebar-logic";
 import { createTodo, renderTodos } from "./todo-creator";
-import {
-  expandTodo,
-  toggleTodoChecked,
-  changePriority,
-  updateText
-} from "./todo-manipulation";
+import { renderForm, allFieldsFilled, clearForm } from "./add-todo-form";
 
 sidebarToggle();
 
@@ -26,51 +21,54 @@ createTodo("Do nothing", "Shut up", "2023-04-15", "red");
 createTodo("Play video games", "COD, Halo, Flappy Bird", "2023-01-25", "white");
 renderTodos();
 
-// Expand - Event Listener
-const allTodoElements = document.querySelectorAll(".todo");
-allTodoElements.forEach((todo) => {
-  const infoContainer = todo.querySelector(".todo-info");
+// Plus button to call renderForm() - Event Listener
+const plusBtn = document.getElementById("add-todo-button");
+plusBtn.addEventListener("click", () => {
+  let form = document.querySelector(".add-todo-form");
 
-  todo.addEventListener("click", (event) => {
-    if (todo !== event.target && infoContainer !== event.target) {
-      return;
+  if (!form) {
+    renderForm();
+  }
+});
+
+// Retrieve values needed to create a todo object from the form values.
+export function getFormValues() {
+  const title = document.getElementById("title");
+  const description = document.getElementById("desc");
+  const dueDate = document.getElementById("date");
+  const priority = document.getElementById("priority-level");
+  return {
+    title: title.value,
+    description: description.value,
+    dueDate: dueDate.value,
+    priority: priority.value,
+  };
+}
+
+export function formEventListeners() {
+  // Form/Add button Event Listener
+  const form = document.querySelector(".add-todo-form");
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const valuesObj = getFormValues();
+
+    if (allFieldsFilled(valuesObj)) {
+      createTodo(
+        valuesObj.title,
+        valuesObj.description,
+        valuesObj.dueDate,
+        valuesObj.priority
+      );
+
+      clearForm();
     }
-    expandTodo(todo);
-  });
-});
-
-// Checkbox - Event Listener
-const allCheckboxes = document.querySelectorAll("input[type='checkbox']");
-allCheckboxes.forEach((checkbox) => {
-  checkbox.addEventListener("click", () => {
-    toggleTodoChecked(checkbox);
-  });
-});
-
-// Delete btn color change - Event Listener
-const allDeleteTodoBtns = document.querySelectorAll(".delete-todo");
-allDeleteTodoBtns.forEach((btn) => {
-  btn.addEventListener("mouseover", () => {
-    btn.src = "./assets/close-red.svg";
   });
 
-  btn.addEventListener("mouseout", () => {
-    btn.src = "./assets/close-blue.svg";
+  // Cancel button Event Listener
+  const cancel = document.getElementById("cancel-todo-btn");
+  cancel.addEventListener("click", () => {
+    clearForm();
   });
-});
-
-// Priority color - Event Listener
-const allPriorityBtns = document.querySelectorAll(".priority");
-allPriorityBtns.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    changePriority(btn);
-  });
-});
-
-// Update object info with inputted DOM info - Event Listener
-const allInfoItems = document.querySelectorAll(".info-item");
-allInfoItems.forEach(item => {
-  item.addEventListener("blur", () => {
-    updateText(item);
-  })
-})
+}
