@@ -1,6 +1,13 @@
 import { allTodos, renderTodos } from "./todo-creator";
 
-export { expandTodo, toggleTodoChecked, changePriority, updateText, deleteTodo, };
+export {
+  expandTodo,
+  toggleTodoChecked,
+  changePriority,
+  updateText,
+  deleteTodo,
+  deleteTodosFromFolder,
+};
 
 function expandTodo(target) {
   const todoElements = document.querySelectorAll(".todo");
@@ -41,9 +48,9 @@ function changePriorityColor(priorityBtn) {
       priorityBtn.style.backgroundColor = "orange";
       break;
     case "orange":
-      priorityBtn.style.backgroundColor = "white";
+      priorityBtn.style.backgroundColor = "cyan";
       break;
-    case "white":
+    case "cyan":
       priorityBtn.style.backgroundColor = "red";
       break;
     default:
@@ -85,10 +92,18 @@ function updateText(infoItem) {
 }
 
 function deleteTodo(clickedBtn) {
-  console.log(allTodos)
   const todoObj = getRelatedObject(clickedBtn);
   const index = allTodos.indexOf(todoObj);
   allTodos.splice(index, 1);
   renderTodos();
-  console.log(allTodos);
-};
+}
+
+function deleteTodosFromFolder(folderName) {
+  allTodos.forEach((todoObj) => {
+    if (todoObj.folder === folderName) {
+      const index = allTodos.indexOf(todoObj);
+      allTodos.splice(index, 1);
+    }
+  });
+  renderTodos();
+}
