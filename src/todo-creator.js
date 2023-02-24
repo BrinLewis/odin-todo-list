@@ -5,17 +5,19 @@ import {
   updateText,
   deleteTodo,
 } from "./todo-manipulation";
+import { hoverCloseBtn } from ".";
 
 export { allTodos, createTodo, renderTodos };
 
 const allTodos = [];
 
-function createTodo(title, description, dueDate, priority) {
+function createTodo(title, description, dueDate, priority, folder) {
   let todo = {
     title,
     description,
     dueDate,
     priority,
+    folder,
   };
 
   allTodos.push(todo);
@@ -125,13 +127,7 @@ function todoEventListeners() {
   // Delete btn - Event Listeners
   const allDeleteTodoBtns = document.querySelectorAll(".delete-todo");
   allDeleteTodoBtns.forEach((btn) => {
-    btn.addEventListener("mouseover", () => {
-      btn.src = "./assets/close-red.svg";
-    });
-
-    btn.addEventListener("mouseout", () => {
-      btn.src = "./assets/close-blue.svg";
-    });
+    hoverCloseBtn(btn);
 
     btn.addEventListener("click", () => {
       deleteTodo(btn);

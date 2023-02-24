@@ -4,7 +4,7 @@ import "./assets/home.svg";
 import "./assets/plus.svg";
 import "./assets/close-blue.svg";
 import "./assets/close-red.svg";
-import { sidebarToggle } from "./sidebar-logic";
+import { sidebarToggle, renderFolders } from "./sidebar-logic";
 import { createTodo, renderTodos } from "./todo-creator";
 import { renderForm, allFieldsFilled, clearForm } from "./add-todo-form";
 
@@ -15,11 +15,13 @@ createTodo(
   "Wash dishes",
   "Make sure to get all of them!",
   "2024-02-12",
-  "orange"
+  "orange",
+  "Daily"
 );
 createTodo("Do nothing", "Shut up", "2023-04-15", "red");
-createTodo("Play video games", "COD, Halo, Flappy Bird", "2023-01-25", "white");
+createTodo("Play video games", "COD, Halo, Flappy Bird", "2023-01-25", "cyan", "Weekly");
 renderTodos();
+renderFolders();
 
 // Plus button to call renderForm() - Event Listener
 const plusBtn = document.getElementById("add-todo-button");
@@ -70,5 +72,14 @@ export function formEventListeners() {
   const cancel = document.getElementById("cancel-todo-btn");
   cancel.addEventListener("click", () => {
     clearForm();
+  });
+}
+
+export function hoverCloseBtn (btn) {
+  btn.addEventListener("mouseover", () => {
+    btn.src = "./assets/close-red.svg";
+  });
+  btn.addEventListener("mouseout", () => {
+    btn.src = "./assets/close-blue.svg";
   });
 }
