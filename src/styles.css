@@ -104,8 +104,33 @@ li {
   gap: 5px;
 }
 
-.folders > ul > li {
+.folders > ul {
   font-size: 1.5rem;
+  width: 170px;
+}
+
+.folders > ul > li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.folder {
+  padding: 0 2px;
+}
+
+.folder .selected {
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.selected ~ .delete-folder {
+  display: block;
+}
+
+.delete-folder {
+  display: none;
+  width: 20px;
 }
 
 .content {
