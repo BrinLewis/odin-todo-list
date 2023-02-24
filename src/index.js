@@ -9,8 +9,6 @@ import { createTodo, renderTodos } from "./todo-creator";
 import { renderForm, allFieldsFilled, clearForm } from "./add-todo-form";
 
 sidebarToggle();
-
-// Temp filler todo's
 createTodo(
   "Wash dishes",
   "Make sure to get all of them!",
@@ -20,7 +18,6 @@ createTodo(
 );
 createTodo("Do nothing", "Shut up", "2023-04-15", "red");
 createTodo("Play video games", "COD, Halo, Flappy Bird", "2023-01-25", "cyan", "Weekly");
-renderTodos();
 renderFolders();
 
 // Plus button to call renderForm() - Event Listener
