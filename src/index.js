@@ -5,7 +5,7 @@ import "./assets/plus.svg";
 import "./assets/close-blue.svg";
 import "./assets/close-red.svg";
 import { sidebarToggle, renderFolders } from "./sidebar-logic";
-import { createTodo, renderTodos } from "./todo-creator";
+import { createTodo, } from "./todo-creator";
 import { renderForm, allFieldsFilled, clearForm } from "./add-todo-form";
 
 sidebarToggle();
