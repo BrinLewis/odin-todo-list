@@ -133,6 +133,49 @@ li {
   width: 20px;
 }
 
+.new-folder-form {
+  width: 100%;
+  border: 2px solid black;
+  border-radius: 10px;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 5px;
+}
+
+.folder-form-heading {
+  font-weight: bold;
+}
+
+.form-name-input {
+  width: 90%;
+  border: 2px solid black;
+  border-radius: 20px;
+  padding-left: 10px;
+}
+
+.btns-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.btns-container > button {
+  width: 70px;
+  border: 2px solid black;
+  border-radius: 7px;
+  margin-bottom: 6px;
+}
+
+.new-folder-form,
+.form-name-input,
+.btns-container > button {
+  font-size: 18px;
+}
+
 .content {
   width: 100%;
   min-height: 100%;
@@ -312,11 +355,13 @@ input[type="date"]:disabled {
   border-radius: 10px;
 }
 
-#submit-todo-btn {
+#submit-todo-btn,
+#submit-folder-btn {
   background-color: rgb(42, 211, 253);
 }
 
-#cancel-todo-btn {
+#cancel-todo-btn,
+#cancel-folder-btn {
   background-color: rgb(204, 49, 49);
 }
 
