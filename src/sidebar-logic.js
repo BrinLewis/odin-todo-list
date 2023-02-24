@@ -1,5 +1,6 @@
 export { sidebarToggle, renderFolders };
 import { hoverCloseBtn } from ".";
+import { renderTodos } from "./todo-creator";
 import { deleteTodosFromFolder } from "./todo-manipulation";
 
 // Sidebar Toggle Logic
@@ -42,6 +43,9 @@ function renderFolders() {
     //Add Event Listeners
     folderName.addEventListener("click", () => {
       selectFolder(folderName);
+      
+      const folderToRender = folderName.textContent;
+      renderTodos(folderToRender);
     });
 
     hoverCloseBtn(deleteFolderBtn);
