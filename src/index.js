@@ -36,11 +36,13 @@ export function getFormValues() {
   const description = document.getElementById("desc");
   const dueDate = document.getElementById("date");
   const priority = document.getElementById("priority-level");
+  const folder = document.getElementById("folder-selector");
   return {
     title: title.value,
     description: description.value,
     dueDate: dueDate.value,
     priority: priority.value,
+    folder: folder.value
   };
 }
 
@@ -58,7 +60,8 @@ export function formEventListeners() {
         valuesObj.title,
         valuesObj.description,
         valuesObj.dueDate,
-        valuesObj.priority
+        valuesObj.priority,
+        valuesObj.folder
       );
 
       clearForm();

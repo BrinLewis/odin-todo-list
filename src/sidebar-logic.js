@@ -1,7 +1,7 @@
-export { sidebarToggle, renderFolders };
+export { sidebarToggle, renderFolders, folderDropdownOptions, updateFolder };
 import { hoverCloseBtn } from ".";
 import { renderTodos } from "./todo-creator";
-import { deleteTodosFromFolder } from "./todo-manipulation";
+import { deleteTodosFromFolder, getRelatedObject } from "./todo-manipulation";
 
 // Sidebar Toggle Logic
 function sidebarToggle() {
@@ -43,7 +43,7 @@ function renderFolders() {
     //Add Event Listeners
     folderName.addEventListener("click", () => {
       selectFolder(folderName);
-      
+
       const folderToRender = folderName.textContent;
       renderTodos(folderToRender);
     });
@@ -100,7 +100,7 @@ function renderFolderForm() {
 
   const formHeading = document.createElement("p");
   formHeading.classList.add("folder-form-heading");
-  formHeading.textContent = "New Folder:"
+  formHeading.textContent = "New Folder:";
 
   const formNameInput = document.createElement("input");
   formNameInput.setAttribute("type", "text");
@@ -161,13 +161,30 @@ function clearFolderForm() {
   foldersContainer.removeChild(folderFormContainer);
 }
 
+function folderDropdownOptions(parent, folderName) {
+  allFolders.forEach((folder) => {
+    const option = document.createElement("option");
+    option.value = folder;
+    option.textContent = folder;
+    if (folder === folderName) {
+      option.selected = true;
+    }
+    parent.appendChild(option);
+  });
+}
+
+function updateFolder(selectElement) {
+  const todoObject = getRelatedObject(selectElement);
+  todoObject.folder = selectElement.value;
+}
+
 // The folder names list will just be an array containing strings of each folder             XXXXXXX
 // name.
 //
 // The folder names will be rendered as p and img elements inside li's in an unordered       XXXXXXXX
-// list, each of which p will have a click listener that will take the textContent
-// of the p that was clicked and call renderTodos, which will take the
-// textContent, and render only the todo objects which have the key:value pair
+// list, each of which p will have a click listener that will take the textContent           XXXXXXXX
+// of the p that was clicked and call renderTodos, which will take the                      XXXXXXXX
+// textContent, and render only the todo objects which have the key:value pair              XXXXXXX
 // of folder:*foldername*.
 //
 // Each img will be a cross blue cross icon (switches to red on hover) and will       XXXXXXXXX
@@ -184,6 +201,6 @@ function clearFolderForm() {
 // its textContent. addNewFolder will also use folderNames.push(newFolderName)         XXXXXXX
 // to add it to the array.                                                             XXXXXXXX
 //
-// This means that the todo creation form will need to ask what folder you'd           
+// This means that the todo creation form will need to ask what folder you'd
 // like to put the todo in and then createTodo will take in that answer and put
 // it as a property of the object so that it can be read by renderTodos.              XXXXXXX

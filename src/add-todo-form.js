@@ -1,6 +1,7 @@
 export { renderForm, allFieldsFilled, clearForm };
 
 import { formEventListeners } from ".";
+import { folderDropdownOptions } from "./sidebar-logic";
 
 function renderForm() {
   // Create Elements
@@ -42,7 +43,7 @@ function renderForm() {
 
   const dateLabel = document.createElement("label");
   dateLabel.setAttribute("for", "date");
-  dateLabel.textContent = "Due Date:";
+  dateLabel.textContent = "Due Date: ";
 
   const date = document.createElement("input");
   date.setAttribute("type", "date");
@@ -52,11 +53,12 @@ function renderForm() {
 
   const priorityLabel = document.createElement("label");
   priorityLabel.setAttribute("for", "priority-level");
-  priorityLabel.textContent = "Priority Level:";
+  priorityLabel.textContent = "Priority Level: ";
 
   const prioritySelect = document.createElement("select");
   prioritySelect.setAttribute("name", "priority");
   prioritySelect.id = "priority-level";
+  prioritySelect.classList.add("select");
 
   const options = [];
   function renderOption(value, textContent, isSelected) {
@@ -69,6 +71,20 @@ function renderForm() {
   renderOption("red", "High");
   renderOption("orange", "Medium");
   renderOption("white", "Low", true);
+
+  const folderSelectorContainer = document.createElement("div");
+  folderSelectorContainer.classList.add("folder-selector-container");
+
+  const folderSelectorLabel = document.createElement("label");
+  folderSelectorLabel.setAttribute("for", "folder-selector");
+  folderSelectorLabel.textContent = "Folder: "
+
+  const folderSelector = document.createElement("select");
+  folderSelector.setAttribute("name", "new-todo-folder-select");
+  folderSelector.classList.add("select");
+  folderSelector.id = "folder-selector";
+
+  folderDropdownOptions(folderSelector);
 
   const formBtns = document.createElement("div");
   formBtns.classList.add("form-btns");
@@ -91,6 +107,7 @@ function renderForm() {
     titleContainer,
     descContainer,
     datePriorityContainer,
+    folderSelectorContainer,
     formBtns,
   ];
 
@@ -115,6 +132,9 @@ function renderForm() {
   options.forEach((option) => {
     prioritySelect.appendChild(option);
   });
+
+  folderSelectorContainer.appendChild(folderSelectorLabel);
+  folderSelectorContainer.appendChild(folderSelector);
 
   formBtns.appendChild(submitBtn);
   formBtns.appendChild(cancelBtn);

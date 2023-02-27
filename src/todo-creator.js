@@ -6,12 +6,13 @@ import {
   deleteTodo,
 } from "./todo-manipulation";
 import { hoverCloseBtn } from ".";
+import { folderDropdownOptions, updateFolder } from "./sidebar-logic";
 
 export { allTodos, createTodo, renderTodos };
 
 const allTodos = [];
 
-function createTodo(title, description, dueDate, priority, folder) {
+function createTodo(title, description, dueDate, priority, folder = "Home") {
   let todo = {
     title,
     description,
@@ -27,8 +28,13 @@ function createTodo(title, description, dueDate, priority, folder) {
 
 function renderTodos(folderToRender = "Home") {
   clearTodos();
+
+  let todosEmpty = true;
+
   allTodos.forEach((item, index) => {
     if (folderToRender === "Home" || folderToRender === item.folder) {
+      todosEmpty = false;
+
       // Create elements
       const todoContainer = document.createElement("div");
       todoContainer.classList.add("todo");
@@ -60,6 +66,12 @@ function renderTodos(folderToRender = "Home") {
       description.setAttribute("contenteditable", true);
       description.textContent = item.description;
 
+      const folderSelect = document.createElement("select");
+      folderSelect.setAttribute("name", "folder-select");
+      folderSelect.classList.add("select");
+
+      folderDropdownOptions(folderSelect, item.folder);
+
       const date = document.createElement("input");
       date.setAttribute("type", "date");
       date.setAttribute("name", `duedate-${index + 1}`);
@@ -80,6 +92,7 @@ function renderTodos(folderToRender = "Home") {
         checkbox,
         checkboxLabel,
         infoContainer,
+        folderSelect,
         date,
         deleteBtn,
       ];
@@ -93,6 +106,16 @@ function renderTodos(folderToRender = "Home") {
     }
   });
 
+  if (todosEmpty) {
+    const todoList = document.querySelector(".todo-list");
+    const folderEmptyText = document.createElement("p");
+    folderEmptyText.id = "folderEmptyText";
+    folderEmptyText.textContent =
+      "This folder is empty, press the plus button below to add a todo!";
+
+    todoList.appendChild(folderEmptyText);
+  }
+
   todoEventListeners();
 }
 
@@ -105,7 +128,7 @@ function clearTodos() {
 }
 
 function todoEventListeners() {
-  // Expand - Event Listener
+  // Expand todo
   const allTodoElements = document.querySelectorAll(".todo");
   allTodoElements.forEach((todo) => {
     const infoContainer = todo.querySelector(".todo-info");
@@ -118,7 +141,7 @@ function todoEventListeners() {
     });
   });
 
-  // Checkbox - Event Listener
+  // Checkbox
   const allCheckboxes = document.querySelectorAll("input[type='checkbox']");
   allCheckboxes.forEach((checkbox) => {
     checkbox.addEventListener("click", () => {
@@ -126,7 +149,7 @@ function todoEventListeners() {
     });
   });
 
-  // Delete btn - Event Listeners
+  // Delete btn
   const allDeleteTodoBtns = document.querySelectorAll(".delete-todo");
   allDeleteTodoBtns.forEach((btn) => {
     hoverCloseBtn(btn);
@@ -136,7 +159,7 @@ function todoEventListeners() {
     });
   });
 
-  // Priority color - Event Listener
+  // Priority color
   const allPriorityBtns = document.querySelectorAll(".priority");
   allPriorityBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -144,11 +167,19 @@ function todoEventListeners() {
     });
   });
 
-  // Update object info with inputted DOM info - Event Listener
+  // Update object info with inputted DOM info
   const allInfoItems = document.querySelectorAll(".info-item");
   allInfoItems.forEach((item) => {
     item.addEventListener("blur", () => {
       updateText(item);
+    });
+  });
+
+  // Change folder when dropdown list is changed
+  const allSelectFolders = document.querySelectorAll(".todo select");
+  allSelectFolders.forEach((selectFolder) => {
+    selectFolder.addEventListener("change", () => {
+      updateFolder(selectFolder);
     });
   });
 }
