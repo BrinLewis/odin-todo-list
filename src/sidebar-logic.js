@@ -177,30 +177,3 @@ function updateFolder(selectElement) {
   const todoObject = getRelatedObject(selectElement);
   todoObject.folder = selectElement.value;
 }
-
-// The folder names list will just be an array containing strings of each folder             XXXXXXX
-// name.
-//
-// The folder names will be rendered as p and img elements inside li's in an unordered       XXXXXXXX
-// list, each of which p will have a click listener that will take the textContent           XXXXXXXX
-// of the p that was clicked and call renderTodos, which will take the                      XXXXXXXX
-// textContent, and render only the todo objects which have the key:value pair              XXXXXXX
-// of folder:*foldername*.
-//
-// Each img will be a cross blue cross icon (switches to red on hover) and will       XXXXXXXXX
-// have an id of delete-*foldername* and click listener that will remove all          XXXXXXXX
-// the item *foldername* from the array and also delete the todo's with the           XXXXXXXX
-// key:value pair of folder:*foldername*                                              XXXXXXXX
-//
-// Will need an event listener on the plus icon next to Folders on the sidebar.       XXXXXXXX
-// This event listener will call renderFolderForm, which will add a small form        XXXXXXXX
-// containing a text input and two buttons (add, cancel) underneath the list.          XXXXXXX
-
-// On submission of this form, it will call removeFolderForm, and addNewFolder,        XXXXXXX
-// which will take the value of the text input and add an li with that value as        XXXXXXX
-// its textContent. addNewFolder will also use folderNames.push(newFolderName)         XXXXXXX
-// to add it to the array.                                                             XXXXXXXX
-//
-// This means that the todo creation form will need to ask what folder you'd
-// like to put the todo in and then createTodo will take in that answer and put
-// it as a property of the object so that it can be read by renderTodos.              XXXXXXX
