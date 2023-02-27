@@ -1,7 +1,7 @@
 export { renderForm, allFieldsFilled, clearForm };
 
 import { formEventListeners } from ".";
-import { folderDropdownOptions } from "./sidebar-logic";
+import { folderDropdownOptions } from "./folder-logic";
 
 function renderForm() {
   // Create Elements

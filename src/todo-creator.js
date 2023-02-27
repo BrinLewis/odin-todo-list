@@ -6,7 +6,7 @@ import {
   deleteTodo,
 } from "./todo-manipulation";
 import { hoverCloseBtn } from ".";
-import { folderDropdownOptions, updateFolder } from "./sidebar-logic";
+import { folderDropdownOptions, updateFolder } from "./folder-logic";
 
 export { allTodos, createTodo, renderTodos };
 
