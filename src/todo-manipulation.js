@@ -100,11 +100,17 @@ function deleteTodo(clickedBtn) {
 }
 
 function deleteTodosFromFolder(folderName) {
-  allTodos.forEach((todoObj) => {
-    if (todoObj.folder === folderName) {
-      const index = allTodos.indexOf(todoObj);
-      allTodos.splice(index, 1);
+  let i = 0;
+
+  while (i < allTodos.length) {
+    const todo = allTodos[i];
+
+    if (todo.folder === folderName) {
+      allTodos.splice(i, 1);
+    } else {
+      i += 1;
     }
-  });
+  }
+
   renderTodos();
 }
