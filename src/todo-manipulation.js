@@ -7,6 +7,7 @@ export {
   updateText,
   deleteTodo,
   deleteTodosFromFolder,
+  getRelatedObject,
 };
 
 function expandTodo(target) {
