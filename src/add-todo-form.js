@@ -1,6 +1,6 @@
 export { renderForm, allFieldsFilled, clearForm };
 
-import { formEventListeners } from ".";
+import { createTodo } from "./todo-creator";
 import { folderDropdownOptions } from "./folder-logic";
 
 function renderForm() {
@@ -156,4 +156,48 @@ function clearForm() {
   const content = document.querySelector(".content");
   const form = document.querySelector(".add-todo-form");
   content.removeChild(form);
+}
+
+function getFormValues() {
+  const title = document.getElementById("title");
+  const description = document.getElementById("desc");
+  const dueDate = document.getElementById("date");
+  const priority = document.getElementById("priority-level");
+  const folder = document.getElementById("folder-selector");
+  return {
+    title: title.value,
+    description: description.value,
+    dueDate: dueDate.value,
+    priority: priority.value,
+    folder: folder.value
+  };
+}
+
+function formEventListeners() {
+  // Form/Add button Event Listener
+  const form = document.querySelector(".add-todo-form");
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const valuesObj = getFormValues();
+
+    if (allFieldsFilled(valuesObj)) {
+      createTodo(
+        valuesObj.title,
+        valuesObj.description,
+        valuesObj.dueDate,
+        valuesObj.priority,
+        valuesObj.folder
+      );
+
+      clearForm();
+    }
+  });
+
+  // Cancel button Event Listener
+  const cancel = document.getElementById("cancel-todo-btn");
+  cancel.addEventListener("click", () => {
+    clearForm();
+  });
 }
