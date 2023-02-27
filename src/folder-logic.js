@@ -3,7 +3,7 @@ import { hoverCloseBtn } from ".";
 import { renderTodos } from "./todo-creator";
 import { deleteTodosFromFolder, getRelatedObject } from "./todo-manipulation";
 
-const allFolders = ["Home", "Daily", "Weekly", "Homework"];
+let allFolders = ["Home", "Daily", "Weekly", "Homework"];
 
 function renderFolders() {
   clearFolders();

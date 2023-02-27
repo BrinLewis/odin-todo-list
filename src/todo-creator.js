@@ -10,7 +10,7 @@ import { folderDropdownOptions, updateFolder } from "./folder-logic";
 
 export { allTodos, createTodo, renderTodos };
 
-const allTodos = [];
+let allTodos = [];
 
 function createTodo(title, description, dueDate, priority, folder = "Home") {
   let todo = {
