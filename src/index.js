@@ -4,8 +4,8 @@ import "./assets/home.svg";
 import "./assets/plus.svg";
 import "./assets/close-blue.svg";
 import "./assets/close-red.svg";
-import { renderFolders } from "./folder-logic";
-import { createTodo } from "./todo-creator";
+import { renderFolders, selectFolder } from "./folder-logic";
+import { createTodo, renderTodos } from "./todo-creator";
 import { renderForm } from "./add-todo-form";
 
 sidebarToggle();
@@ -16,7 +16,7 @@ createTodo(
   "orange",
   "Daily"
 );
-createTodo("Do nothing", "Shut up", "2023-04-15", "red");
+createTodo("Do nothing", "Shut up", "2023-04-15", "red", "Daily");
 createTodo(
   "Play video games",
   "COD, Halo, Flappy Bird",
@@ -44,6 +44,7 @@ export function hoverCloseBtn(btn) {
     btn.src = "./assets/close-blue.svg";
   });
 }
+
 function sidebarToggle() {
   const toggleBtn = document.getElementById("sidebar-toggle");
   const sidebar = document.querySelector(".sidebar");
@@ -51,3 +52,16 @@ function sidebarToggle() {
     sidebar.classList.toggle("closed");
   });
 }
+
+const homeButton = document.getElementById("home-button");
+homeButton.addEventListener("click", () => {
+  
+  const allFolders = document.querySelectorAll(".folder");
+  allFolders.forEach(folder => {
+    if (folder.textContent === "Home") {
+      selectFolder(folder);
+    }
+  })
+  
+  renderTodos();
+});
