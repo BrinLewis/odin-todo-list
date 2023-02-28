@@ -13,13 +13,21 @@ export { allTodos, createTodo, renderTodos };
 
 let allTodos = [];
 
-function createTodo(title, description, dueDate, priority, folder = "Home") {
+function createTodo(
+  title,
+  description,
+  dueDate,
+  priority,
+  folder = "Home",
+  checked = false,
+) {
   let todo = {
     title,
     description,
     dueDate,
     priority,
     folder,
+    checked,
   };
 
   allTodos.push(todo);
@@ -48,6 +56,10 @@ function renderTodos(folderToRender = "Home") {
       const checkbox = document.createElement("input");
       checkbox.setAttribute("type", "checkbox");
       checkbox.id = `checkbox-${index + 1}`;
+      if (item.checked) {
+        checkbox.checked = true;
+        toggleTodoChecked(checkbox);
+      }
 
       const checkboxLabel = document.createElement(`label`);
       checkboxLabel.setAttribute("for", `${checkbox.id}`);
@@ -186,9 +198,9 @@ function todoEventListeners() {
 
   // Update date if it is changed
   const allDateInputs = document.querySelectorAll("[id*='duedate']");
-  allDateInputs.forEach(dateInput => {
+  allDateInputs.forEach((dateInput) => {
     dateInput.addEventListener("change", () => {
       updateDate(dateInput);
-    })
-  })
+    });
+  });
 }

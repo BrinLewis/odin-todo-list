@@ -24,23 +24,17 @@ function expandTodo(target) {
 
 function toggleTodoChecked(box) {
   const todo = box.parentNode;
-  const infoContainer = todo.querySelector(".todo-info");
   const date = todo.querySelector("input[type='date']");
+  const todoObj = getRelatedObject(box);
 
-  if (box.checked) {
-    todo.setAttribute("style", "background-color: rgba(209, 209, 209, 0.651)");
-    infoContainer.setAttribute(
-      "style",
-      "text-decoration: line-through; color: rgb(90, 90, 90);"
-    );
+  todo.classList.toggle("checked");
+
+  if (todo.classList.contains("checked")) {
     date.disabled = true;
+    todoObj.checked = true;
   } else {
-    todo.setAttribute("style", "background-color: white");
-    infoContainer.removeAttribute(
-      "style",
-      "text-decoration: line-through; color: black;"
-    );
     date.disabled = false;
+    todoObj.checked = true;
   }
 }
 
