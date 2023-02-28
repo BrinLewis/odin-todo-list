@@ -186,6 +186,12 @@ li {
   padding-top: 30px;
 }
 
+.current-folder-header {
+  font-size: 30px;
+  font-weight: 400;
+  padding-bottom: 20px;
+}
+
 .todo-list {
   width: 100%;
   height: max-content;
