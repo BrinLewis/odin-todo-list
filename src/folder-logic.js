@@ -1,4 +1,4 @@
-export { renderFolders, folderDropdownOptions, updateFolder };
+export { renderFolders, folderDropdownOptions, updateFolder, selectFolder };
 import { hoverCloseBtn } from ".";
 import { renderTodos } from "./todo-creator";
 import { deleteTodosFromFolder, getRelatedObject } from "./todo-manipulation";
