@@ -17,11 +17,21 @@ body {
   --header-height: 80px;
   --sidebar-width: 350px;
   --transition-timing: 350ms;
-  --standard-border: 2px solid black;
+
+  --standard-border: 1px solid black;
+
+  --dark-blue: rgba(0,175,255,1);
+  --bright-blue: rgb(42, 211, 253);
+  --header-background: rgb(255, 255, 255);
+  --sidebar-background: rgb(255, 255, 255);
+  --content-background: rgb(255, 248, 238);
+  --todo-background: rgb(248, 233, 210);
+  --red: rgb(204, 49, 49);
 }
 
 li {
   list-style: none;
+  font-weight: 200;
 }
 
 .header-btn {
@@ -30,6 +40,7 @@ li {
 
 .icon:hover {
   cursor: pointer;
+  transform: scale(1.1);
 }
 
 .icon:active {
@@ -47,15 +58,31 @@ li {
   align-items: center;
   padding: 0 20px;
   border-bottom: var(--standard-border);
-  background-color: white;
+  background-color: var(--header-background);
+}
+
+.header h1 {
+  font-weight: 200;
+  border-bottom: 2px solid transparent;
+  border-image: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgb(42, 211, 253) 30%,
+      rgb(42, 211, 253) 70%,
+      rgba(0, 0, 0, 0) 100%
+    )
+    1;
+  padding-bottom: 5px;
 }
 
 .container {
   display: flex;
   height: calc(100% - var(--header-height));
+  background-color: var(--content-background);
 }
 
 .sidebar {
+  background-color: var(--sidebar-background);
   width: var(--sidebar-width);
   height: 100%;
   border-right: var(--standard-border);
@@ -84,17 +111,28 @@ li {
   align-items: center;
   justify-items: center;
   row-gap: 20px;
-  padding-top: 20px;
+  padding-top: 40px;
   transition: transform var(--transition-timing) ease-in-out;
 }
 
 .folders-heading {
   font-size: 2rem;
-  font-weight: bold;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  border-image: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgb(42, 211, 253) 30%,
+      rgb(42, 211, 253) 70%,
+      rgba(0, 0, 0, 0) 100%
+    )
+    1;
+  padding-bottom: 5px;
 }
 
 #add-folder-btn {
   width: 30px;
+  padding-bottom: 5px;
 }
 
 .folders > ul {
@@ -116,13 +154,21 @@ li {
   gap: 10px;
 }
 
-.folder {
-  padding: 0 2px;
+.folders li:hover {
+  cursor: pointer;
+  padding-left: 5px;
 }
 
-.folder .selected {
-  border: var(--standard-border);
-  border-radius: 5px;
+.folders li:hover .delete-folder {
+  display: block;
+}
+
+.folder {
+  padding: 0px 0px 3px 10px;
+}
+
+.selected {
+  background: linear-gradient(90deg, var(--bright-blue) 0%, rgba(167,227,255,0) 100%);
 }
 
 .selected ~ .delete-folder {
@@ -148,7 +194,7 @@ li {
 }
 
 .folder-form-heading {
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .form-name-input {
@@ -156,6 +202,7 @@ li {
   border: var(--standard-border);
   border-radius: 20px;
   padding-left: 10px;
+  background-color: transparent;
 }
 
 .btns-container {
@@ -188,7 +235,7 @@ li {
 
 .current-folder-header {
   font-size: 30px;
-  font-weight: 400;
+  font-weight: 500;
   padding-bottom: 20px;
 }
 
@@ -204,7 +251,7 @@ li {
 .todo {
   position: relative;
   width: 70%;
-  background-color: white;
+  background-color: var(--todo-background);
 }
 
 .checked {
@@ -228,8 +275,8 @@ li {
 .priority {
   height: 100%;
   width: 10px;
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
 }
 
 input[type="checkbox"] {
@@ -237,7 +284,7 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]:checked + label {
-  background-color: rgb(42, 211, 253);
+  background-color: var(--bright-blue);
   box-shadow: inset 0 0 0px 5px rgb(255, 255, 255);
 }
 
@@ -254,7 +301,7 @@ input[type="checkbox"]:checked + label {
   margin: 0 15px;
   width: 30px;
   height: 30px;
-  border: var(--standard-border);
+  border: 2px solid black;
   border-radius: 50%;
 }
 
@@ -306,9 +353,6 @@ input[type="date"] {
   font-size: 25px;
   margin-right: 10px;
   text-align: center;
-}
-
-input[type="date"]:disabled {
   background-color: transparent;
 }
 
@@ -323,11 +367,11 @@ input[type="date"]:disabled {
   flex-direction: column;
   padding: 10px 20px;
   gap: 10px;
-  background-color: white;
+  background-color: var(--main-background);
 }
 
 .new-item-heading {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .new-todo-info {
@@ -366,14 +410,10 @@ input[type="date"]:disabled {
 }
 
 .select {
-  background-color: white;
+  background-color: transparent;
   border: var(--standard-border);
   border-radius: 20px;
   padding-left: 5px;
-}
-
-.checked .select {
-  background-color: transparent;
 }
 
 .form-btns {
@@ -388,14 +428,23 @@ input[type="date"]:disabled {
   border-radius: 10px;
 }
 
+button:hover {
+  cursor: pointer;
+  box-shadow: 0 0 5px 1px inset rgba(0, 0, 0, 0.418);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
 #submit-todo-btn,
 #submit-folder-btn {
-  background-color: rgb(42, 211, 253);
+  background-color: var(--bright-blue);
 }
 
 #cancel-todo-btn,
 #cancel-folder-btn {
-  background-color: rgb(204, 49, 49);
+  background-color: var(--red);
 }
 
 #add-todo-button {
