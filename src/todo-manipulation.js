@@ -5,6 +5,7 @@ export {
   toggleTodoChecked,
   changePriority,
   updateText,
+  updateDate,
   deleteTodo,
   deleteTodosFromFolder,
   getRelatedObject,
@@ -90,6 +91,11 @@ function updateText(infoItem) {
   } else {
     todoObject.description = infoItem.textContent;
   }
+}
+
+function updateDate(dateInput) {
+  const todoObject = getRelatedObject(dateInput);
+  todoObject.dueDate = dateInput.value;
 }
 
 function deleteTodo(clickedBtn) {

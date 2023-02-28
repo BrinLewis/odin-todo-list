@@ -4,6 +4,7 @@ import {
   changePriority,
   updateText,
   deleteTodo,
+  updateDate,
 } from "./todo-manipulation";
 import { hoverCloseBtn } from ".";
 import { folderDropdownOptions, updateFolder } from "./folder-logic";
@@ -182,4 +183,12 @@ function todoEventListeners() {
       updateFolder(selectFolder);
     });
   });
+
+  // Update date if it is changed
+  const allDateInputs = document.querySelectorAll("[id*='duedate']");
+  allDateInputs.forEach(dateInput => {
+    dateInput.addEventListener("change", () => {
+      updateDate(dateInput);
+    })
+  })
 }
