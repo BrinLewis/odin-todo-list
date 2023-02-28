@@ -6,7 +6,7 @@ import {
   deleteTodo,
   updateDate,
 } from "./todo-manipulation";
-import { hoverCloseBtn } from ".";
+import { hoverCloseBtn, renderHeader } from ".";
 import { folderDropdownOptions, updateFolder } from "./folder-logic";
 
 export { allTodos, createTodo, renderTodos };
@@ -37,6 +37,7 @@ function createTodo(
 
 function renderTodos(folderToRender = "Home") {
   clearTodos();
+  renderHeader();
 
   let todosEmpty = true;
 
