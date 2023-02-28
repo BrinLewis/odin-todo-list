@@ -49,9 +49,7 @@ function renderFolders() {
 function selectFolder(targetFolder) {
   const folders = document.querySelectorAll(".folder");
   folders.forEach((folder) => {
-    if (folder !== targetFolder) {
-      folder.classList.remove("selected");
-    }
+    folder.classList.remove("selected");
   });
   targetFolder.classList.toggle("selected");
 }
