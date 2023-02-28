@@ -16,7 +16,7 @@ createTodo(
   "orange",
   "Daily"
 );
-createTodo("Do nothing", "Shut up", "2023-04-15", "red", "Daily");
+createTodo("Do nothing", "Nothing at all", "2023-04-15", "red", "Daily");
 createTodo(
   "Play video games",
   "COD, Halo, Flappy Bird",
@@ -26,7 +26,6 @@ createTodo(
 );
 renderFolders();
 
-// Plus button to call renderForm() - Event Listener
 const plusBtn = document.getElementById("add-todo-button");
 plusBtn.addEventListener("click", () => {
   let form = document.querySelector(".add-todo-form");
@@ -55,13 +54,22 @@ function sidebarToggle() {
 
 const homeButton = document.getElementById("home-button");
 homeButton.addEventListener("click", () => {
-  
   const allFolders = document.querySelectorAll(".folder");
-  allFolders.forEach(folder => {
+  allFolders.forEach((folder) => {
     if (folder.textContent === "Home") {
       selectFolder(folder);
     }
-  })
-  
+  });
+
   renderTodos();
 });
+
+export function renderHeader() {
+  const currentFolderHeader = document.querySelector(".current-folder-header");
+  const selectedFolder = document.querySelector(".selected");
+  if (selectedFolder) {
+    currentFolderHeader.textContent = selectedFolder.textContent;
+  } else {
+    currentFolderHeader.textContent = "Home";
+  }
+}
