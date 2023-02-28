@@ -343,6 +343,7 @@ label {
 
 .todo select {
   font-size: 18px;
+  margin-right: 10px;
 }
 
 input[type="date"] {
