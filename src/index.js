@@ -12,11 +12,11 @@ sidebarToggle();
 createTodo(
   "Wash dishes",
   "Make sure to get all of them!",
-  "2024-02-12",
+  "2023-02-12",
   "orange",
-  "Daily"
+  "Home"
 );
-createTodo("Do nothing", "Nothing at all", "2023-04-15", "red", "Daily");
+createTodo("Do nothing", "Nothing at all", "2023-02-15", "red", "Daily");
 createTodo(
   "Play video games",
   "COD, Halo, Flappy Bird",
