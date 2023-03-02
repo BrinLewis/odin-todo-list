@@ -70,7 +70,7 @@ function renderForm() {
   }
   renderOption("red", "High");
   renderOption("orange", "Medium");
-  renderOption("white", "Low", true);
+  renderOption("cyan", "Low", true);
 
   const folderSelectorContainer = document.createElement("div");
   folderSelectorContainer.classList.add("folder-selector-container");
