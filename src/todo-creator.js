@@ -6,12 +6,12 @@ import {
   deleteTodo,
   updateDate,
 } from "./todo-manipulation";
-import { hoverCloseBtn, renderHeader } from ".";
+import { hoverCloseBtn, renderHeader, updateStorage, retrieveFromStorage } from ".";
 import { folderDropdownOptions, updateFolder } from "./folder-logic";
 
 export { allTodos, createTodo, renderTodos };
 
-let allTodos = [];
+let allTodos = retrieveFromStorage("todos");
 
 function createTodo(
   title,
@@ -31,6 +31,7 @@ function createTodo(
   };
 
   allTodos.push(todo);
+  updateStorage("todos", allTodos);
   renderTodos();
   return todo;
 }
@@ -57,14 +58,10 @@ function renderTodos(folderToRender = "Home") {
       const checkbox = document.createElement("input");
       checkbox.setAttribute("type", "checkbox");
       checkbox.id = `checkbox-${index + 1}`;
-      if (item.checked) {
-        checkbox.checked = true;
-        toggleTodoChecked(checkbox);
-      }
-
+      
       const checkboxLabel = document.createElement(`label`);
       checkboxLabel.setAttribute("for", `${checkbox.id}`);
-
+      
       const infoContainer = document.createElement("div");
       infoContainer.classList.add("todo-info");
 
@@ -73,13 +70,13 @@ function renderTodos(folderToRender = "Home") {
       title.classList.add("info-item");
       title.setAttribute("contenteditable", true);
       title.textContent = item.title;
-
+      
       const description = document.createElement("p");
       description.classList.add("todo-desc");
       description.classList.add("info-item");
       description.setAttribute("contenteditable", true);
       description.textContent = item.description;
-
+      
       const folderSelect = document.createElement("select");
       folderSelect.setAttribute("name", "folder-select");
       folderSelect.classList.add("select");
@@ -91,12 +88,12 @@ function renderTodos(folderToRender = "Home") {
       date.setAttribute("name", `duedate-${index + 1}`);
       date.setAttribute("id", `duedate-${index + 1}`);
       date.setAttribute("value", `${item.dueDate}`);
-
+      
       const deleteBtn = document.createElement("img");
       deleteBtn.src = "./assets/close-blue.svg";
       deleteBtn.setAttribute("alt", "delete todo button");
       deleteBtn.classList.add("delete-todo");
-
+      
       // Structure elements
       const todoList = document.querySelector(".todo-list");
       todoList.appendChild(todoContainer);
@@ -110,13 +107,19 @@ function renderTodos(folderToRender = "Home") {
         date,
         deleteBtn,
       ];
-
+      
       todoContainerChildren.forEach((element) => {
         todoContainer.appendChild(element);
       });
-
+      
       infoContainer.appendChild(title);
       infoContainer.appendChild(description);
+
+      // Check previously checked boxes on render
+      if (item.checked) {
+        checkbox.checked = true;
+        toggleTodoChecked(checkbox);
+      }
     }
   });
 
@@ -160,6 +163,7 @@ function todoEventListeners() {
   allCheckboxes.forEach((checkbox) => {
     checkbox.addEventListener("click", () => {
       toggleTodoChecked(checkbox);
+      updateStorage("todos", allTodos);
     });
   });
 
@@ -170,6 +174,7 @@ function todoEventListeners() {
 
     btn.addEventListener("click", () => {
       deleteTodo(btn);
+      updateStorage("todos", allTodos);
     });
   });
 
@@ -178,6 +183,7 @@ function todoEventListeners() {
   allPriorityBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
       changePriority(btn);
+      updateStorage("todos", allTodos);
     });
   });
 
@@ -186,6 +192,7 @@ function todoEventListeners() {
   allInfoItems.forEach((item) => {
     item.addEventListener("blur", () => {
       updateText(item);
+      updateStorage("todos", allTodos);
     });
   });
 
@@ -194,6 +201,7 @@ function todoEventListeners() {
   allSelectFolders.forEach((selectFolder) => {
     selectFolder.addEventListener("change", () => {
       updateFolder(selectFolder);
+      updateStorage("todos", allTodos);
     });
   });
 
@@ -202,6 +210,7 @@ function todoEventListeners() {
   allDateInputs.forEach((dateInput) => {
     dateInput.addEventListener("change", () => {
       updateDate(dateInput);
+      updateStorage("todos", allTodos);
     });
   });
 }

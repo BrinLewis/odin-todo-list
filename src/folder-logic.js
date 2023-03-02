@@ -1,9 +1,11 @@
 export { renderFolders, folderDropdownOptions, updateFolder, selectFolder };
-import { hoverCloseBtn } from ".";
+import { hoverCloseBtn, updateStorage } from ".";
 import { renderTodos } from "./todo-creator";
 import { deleteTodosFromFolder, getRelatedObject } from "./todo-manipulation";
 
 let allFolders = ["Home", "Daily", "Weekly", "Homework"];
+
+updateStorage("folders", allFolders);
 
 function renderFolders() {
   clearFolders();

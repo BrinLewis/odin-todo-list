@@ -9,21 +9,26 @@ import { createTodo, renderTodos } from "./todo-creator";
 import { renderForm } from "./add-todo-form";
 
 sidebarToggle();
-createTodo(
-  "Wash dishes",
-  "Make sure to get all of them!",
-  "2023-02-12",
-  "orange",
-  "Home"
-);
-createTodo("Do nothing", "Nothing at all", "2023-02-15", "red", "Daily");
-createTodo(
-  "Play video games",
-  "COD, Halo, Flappy Bird",
-  "2023-01-25",
-  "cyan",
-  "Weekly"
-);
+
+if (!localStorage.getItem("todos")) {
+  createTodo(
+    "Wash dishes",
+    "Make sure to get all of them!",
+    "2023-02-12",
+    "orange",
+    "Home"
+  );
+  createTodo("Do nothing", "Nothing at all", "2023-02-15", "red", "Daily");
+  createTodo(
+    "Play video games",
+    "COD, Halo, Flappy Bird",
+    "2023-01-25",
+    "cyan",
+    "Weekly"
+  );
+}
+
+renderTodos();
 renderFolders();
 
 const plusBtn = document.getElementById("add-todo-button");
@@ -35,7 +40,7 @@ plusBtn.addEventListener("click", () => {
   }
 });
 
-export function hoverCloseBtn(btn) {
+function hoverCloseBtn(btn) {
   btn.addEventListener("mouseover", () => {
     btn.src = "./assets/close-red.svg";
   });
@@ -64,7 +69,7 @@ homeButton.addEventListener("click", () => {
   renderTodos();
 });
 
-export function renderHeader() {
+function renderHeader() {
   const currentFolderHeader = document.querySelector(".current-folder-header");
   const selectedFolder = document.querySelector(".selected");
   if (selectedFolder) {
@@ -73,3 +78,24 @@ export function renderHeader() {
     currentFolderHeader.textContent = "Home";
   }
 }
+
+function updateStorage(key, items) {
+  const items_serialized = JSON.stringify(items);
+
+  localStorage.setItem(key, items_serialized);
+}
+
+function retrieveFromStorage(key) {
+  let usableItems;
+  const storedItems = localStorage.getItem(key);
+
+  if (!storedItems) {
+    usableItems = [];
+  } else {
+    usableItems = JSON.parse(storedItems);
+  }
+
+  return usableItems;
+}
+
+export { hoverCloseBtn, renderHeader, updateStorage, retrieveFromStorage };
